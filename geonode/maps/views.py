@@ -1187,6 +1187,26 @@ def map_wmc(request, mapid, template="maps/wmc.xml"):
     }, content_type='text/xml')
 
 
+def map_config_json(request, mapid):
+    """Map config as a JSON document"""
+    try:
+        map_obj = _resolve_map(
+            request,
+            mapid,
+            'base.view_resourcebase',
+            _PERMISSION_MSG_VIEW)
+    except PermissionDenied:
+        return HttpResponse(_("Not allowed"), status=403)
+    except Exception:
+        raise Http404(_("Not found"))
+    if not map_obj:
+        raise Http404(_("Not found"))
+    config = map_obj.viewer_json(request)
+    return HttpResponse(
+            json.dumps(config),
+            content_type="application/javascript")
+
+
 @deprecated(version='2.10.1', reason="APIs have been changed on geospatial service")
 def map_wms(request, mapid):
     """
