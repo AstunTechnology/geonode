@@ -502,6 +502,24 @@ def map_embed(
     })
 
 
+@xframe_options_exempt
+def map_ol_ishare(
+        request,
+        mapid=None,
+        template='maps/ol_ishare.html'):
+    if mapid is None:
+        config = default_map_config(request)[0]
+    else:
+        map_obj = _resolve_map(
+            request,
+            mapid,
+            'base.view_resourcebase',
+            _PERMISSION_MSG_VIEW)
+    return render(request, template, context={
+        'mapid': mapid
+    })
+
+
 # MAPS VIEWER #
 
 
@@ -1201,6 +1219,7 @@ def map_config_json(request, mapid):
         raise Http404(_("Not found"))
     if not map_obj:
         raise Http404(_("Not found"))
+
     config = map_obj.viewer_json(request)
     return HttpResponse(
             json.dumps(config),

@@ -56,6 +56,7 @@ urlpatterns = [
     url(r'^(?P<mapid>[^/]+)/metadata$', views.map_metadata, name='map_metadata'),
     url(r'^(?P<mapid>[^/]+)/metadata_advanced$', views.map_metadata_advanced, name='map_metadata_advanced'),
     url(r'^(?P<mapid>[^/]+)/embed$', map_embed, name='map_embed'),
+    url(r'^(?P<mapid>[^/]+)/ol_ishare$', views.map_ol_ishare, name='map_ol_ishare'),
     url(r'^embed/$', views.map_embed, name='map_embed'),
     url(r'^metadata/batch/$', views.map_batch_metadata, name='map_batch_metadata'),
     url(r'^(?P<mapid>[^/]*)/metadata_detail$',
