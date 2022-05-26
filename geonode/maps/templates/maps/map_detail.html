@@ -204,6 +204,7 @@
         {% else %}
           <a href="{% url "map_edit" resource.id %}" class="btn btn-default btn-md btn-block">{% trans "View Map" %}</a>
         {% endif %}
+          <a href="{% url "map_ol_ishare" resource.id %}" class="btn btn-default btn-md btn-block">{% trans "View Map (ol-ishare)" %}</a>
         </li>
         {% comment %}
         <li class="list-group-item">
